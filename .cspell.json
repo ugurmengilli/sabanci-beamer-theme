@@ -7,8 +7,8 @@
         "Uğur"
     ],
     "ignoreRegExpList": [
-        "/\\\\[a-z]+/gi", // Ignore LaTeX commands with backslash
-        "/@[a-z0-9_-]+/gi" // Ignore LaTeX definitions after @ sign
+        "/\\\\[a-z]+/gi",
+        "/@[a-z0-9_-]+/gi"
     ],
     "ignoreWords": [
         "beamercolorthemesabanci",
