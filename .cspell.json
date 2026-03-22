@@ -4,16 +4,15 @@
         "Mengilli",
         "Pantone",
         "Sabanci",
-        "Uğur",
+        "Uğur"
+    ],
+    "ignoreRegExpList": [
+        "/\\\\[a-z]+/gi", // Ignore LaTeX commands with backslash
+        "/@[a-z0-9_-]+/gi" // Ignore LaTeX definitions after @ sign
     ],
     "ignoreWords": [
         "beamercolorthemesabanci",
-        "beamerthemesabanci",
-        "colorlet",
-        "definecolor",
-        "frametitle",
         "footline",
-        "sabanc",
-        "setbeamercolor",
+        "frametitle"
     ]
 }
