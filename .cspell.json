@@ -1,0 +1,19 @@
+{
+    "words": [
+        "beamer",
+        "Mengilli",
+        "Pantone",
+        "Sabanci",
+        "Uğur",
+    ],
+    "ignoreWords": [
+        "beamercolorthemesabanci",
+        "beamerthemesabanci",
+        "colorlet",
+        "definecolor",
+        "frametitle",
+        "footline",
+        "sabanc",
+        "setbeamercolor",
+    ]
+}
