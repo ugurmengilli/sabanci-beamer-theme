@@ -13,7 +13,19 @@
     ],
     "ignoreWords": [
         "beamercolorthemesabanci",
+        "beamerthemesabanci",
+        "Biolinum",
+        "cmyk",
+        "currentsection",
+        "Fira",
+        "fontspec",
         "footline",
-        "frametitle"
+        "frametitle",
+        "hideothersubsections",
+        "microtype",
+        "mpfootnote",
+        "nofirafonts",
+        "onlymath",
+        "xcolor"
     ]
 }

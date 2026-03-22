@@ -1,0 +1,80 @@
+% Copyright (c) 2026 Uğur Mengilli
+%
+% This software is released under the MIT License.
+% https://opensource.org/licenses/MIT
+%
+% Sabanci University Beamer Theme (Based on Focus)
+%
+% Main controller for presentation structural logic.
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{beamerthemesabanci}[2026/03/21 Sabanci University Beamer Theme]
+
+% ==============================================
+% PACKAGE OPTIONS (OPT-IN FEATURES)
+% ==============================================
+% Define `[outline]` package option. Trigger in main.tex via
+% \usetheme[outline]{sabanci} to automatically print a "Table of
+% Contents" slide at the start of each new section.
+\newif\ifsabanci@outline
+\sabanci@outlinefalse
+\DeclareOptionBeamer{outline}{\sabanci@outlinetrue}
+\ProcessOptionsBeamer
+
+% ==============================================
+% LOAD BASE THEME
+% ==============================================
+% Build on top of the `focus` theme for modern layout structures.
+% Pass `[nofirafonts]` to allow custom font injection instead of
+% the default Fira fonts.
+\usetheme[nofirafonts]{focus}
+
+% ==============================================
+% TYPOGRAPHY & SYMBOL SETTINGS
+% ==============================================
+\RequirePackage{fontspec}
+% Set global sans-serif font to "Linux Biolinum O".
+\setsansfont{Linux Biolinum O}
+% Improve visual quality and readability of the text.
+\RequirePackage{microtype}
+% Force mathematical equations and numbers to use serif (standard
+% LaTeX math font) instead of sans-serif.
+\usefonttheme[onlymath]{serif}
+
+% ==============================================
+% STRUCTURAL BEHAVIORS & HOOKS
+% ==============================================
+% Convert footnotes from symbols (*, dagger) to Arabic numerals (1, 2).
+\renewcommand{\thempfootnote}{\arabic{mpfootnote}}
+
+% >>> OVERRIDING FOCUS SECTION BEHAVIORS
+% The `focus` theme hijacks \section and \subsection to inject
+% full-page title slides. Redefine them to empty blocks `{}` to
+% suppress this behavior, allowing \section{} to be used purely for PDF
+% bookmarking without interrupting slide flow.
+\AtBeginSubsection{}
+
+\ifsabanci@outline
+  % If `[outline]` flag is passed, generate a Table of Contents slide
+  % at every \section call.
+  \AtBeginSection[]
+  {
+    \begin{frame}<beamer>
+      \frametitle{Presentation Outline}
+      \tableofcontents[currentsection,hideothersubsections]
+    \end{frame}
+  }
+\else
+  % Silence the \section hook if `[outline]` flag is not passed.
+  \AtBeginSection{}
+\fi
+
+% ==============================================
+% BRANDING & AESTHETIC INJECTIONS
+% ==============================================
+% Separate color logic into `beamercolorthemesabanci.sty` for modularity.
+\usecolortheme{sabanci} 
+
+% Setup title graphic (logo on title page).
+% Use `\vspace*{26mm}` to align the Sabanci logo with the layout grid.
+\titlegraphic{\vspace*{26mm}\includegraphics[scale=0.5]{logo_sabanci_cmyk.png}}
