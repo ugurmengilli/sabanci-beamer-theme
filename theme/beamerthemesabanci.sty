@@ -67,10 +67,10 @@
 \renewcommand{\thempfootnote}{\arabic{mpfootnote}}
 
 % >>> OVERRIDING FOCUS SECTION BEHAVIORS
-% The `focus` theme hijacks \section and \subsection to inject
-% full-page title slides. Redefine them to empty blocks `{}` to
-% suppress this behavior, allowing \section{} to be used purely for PDF
-% bookmarking without interrupting slide flow.
+% The `focus` theme uses Beamer's \AtBeginSection and \AtBeginSubsection
+% hooks to inject full-page title slides at each \section and \subsection.
+% Here we clear those hooks so that sections act purely as structural
+% markers (e.g., for PDF bookmarks) without forcing intermediate title frames.
 \AtBeginSubsection{}
 
 \ifsabanci@outline
@@ -92,7 +92,7 @@
 % BRANDING & AESTHETIC INJECTIONS
 % ==============================================
 % Separate color logic into `beamercolorthemesabanci.sty` for modularity.
-\usecolortheme{sabanci} 
+\usecolortheme{sabanci}
 
 % Extend the graphics search path so that images stored alongside this
 % theme file are found regardless of the compilation working directory.
