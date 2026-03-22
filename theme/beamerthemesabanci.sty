@@ -75,6 +75,11 @@
 % Separate color logic into `beamercolorthemesabanci.sty` for modularity.
 \usecolortheme{sabanci} 
 
+% Extend the graphics search path so that images stored alongside this
+% theme file are found regardless of the compilation working directory.
+\RequirePackage{currfile}
+\graphicspath{{\currfiledir}}
+
 % Setup title graphic (logo on title page).
 % Use `\vspace*{26mm}` to align the Sabanci logo with the layout grid.
 \titlegraphic{\vspace*{26mm}\includegraphics[scale=0.5]{logo_sabanci_cmyk.png}}
