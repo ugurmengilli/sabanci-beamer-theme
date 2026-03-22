@@ -32,9 +32,28 @@
 % ==============================================
 % TYPOGRAPHY & SYMBOL SETTINGS
 % ==============================================
-\RequirePackage{fontspec}
-% Set global sans-serif font to "Linux Biolinum O".
-\setsansfont{Linux Biolinum O}
+\RequirePackage{iftex}
+% Load OpenType font support only under XeTeX/LuaTeX and select
+% "Linux Biolinum O" as the global sans-serif font if available.
+\ifPDFTeX
+  % pdfLaTeX: fontspec and system OpenType fonts are not supported.
+  % Fall back to the document's default sans-serif font and warn.
+  \PackageWarning{beamerthemesabanci}{%
+    Custom OpenType font 'Linux Biolinum O' is not available under pdfLaTeX.%
+    \MessageBreak Using the default sans-serif font instead.}
+\else
+  \RequirePackage{fontspec}
+  \IfFontExistsTF{Linux Biolinum O}{%
+    \setsansfont{Linux Biolinum O}%
+  }{%
+    \PackageError{beamerthemesabanci}%
+      {Required font 'Linux Biolinum O' is not installed}%
+      {%
+        Install the 'Linux Biolinum O' system font or modify the theme to%
+        \MessageBreak use a different sans-serif font before continuing.%
+      }%
+  }
+\fi
 % Improve visual quality and readability of the text.
 \RequirePackage{microtype}
 % Force mathematical equations and numbers to use serif (standard
