@@ -11,6 +11,12 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{beamercolorthemesabanci}[2026/03/21 Sabanci University Beamer Color Theme]
 
+% The package relies on color macros like `\definecolor` and
+% `\colorlet`. In Beamer `xcolor` is loaded, so this package typically
+% works, but as a standalone package it's more robust to explicitly
+% require `xcolor` package.
+\RequirePackage{xcolor}
+
 % ==========================================================
 % PART 1: CORE IDENTITY COLORS
 % ==========================================================
