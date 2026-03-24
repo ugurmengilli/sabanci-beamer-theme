@@ -1,0 +1,18 @@
+{
+    "words": [
+        "beamer",
+        "Mengilli",
+        "Pantone",
+        "Sabanci",
+        "Uğur"
+    ],
+    "ignoreRegExpList": [
+        "/\\\\[a-z]+/gi",
+        "/@[a-z0-9_-]+/gi"
+    ],
+    "ignoreWords": [
+        "beamercolorthemesabanci",
+        "footline",
+        "frametitle"
+    ]
+}
