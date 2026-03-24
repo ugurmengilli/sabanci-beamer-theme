@@ -17,14 +17,14 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
-            github.rest.pulls.update({
+            await github.rest.pulls.update({
               owner: context.repo.owner,
               repo: context.repo.repo,
               pull_number: context.payload.pull_request.number,
               base: 'develop'  // Change this to your preferred PR branch name
             });
             
-            github.rest.issues.createComment({
+            await github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: context.payload.pull_request.number,
