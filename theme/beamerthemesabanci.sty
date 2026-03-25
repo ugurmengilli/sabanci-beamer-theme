@@ -1,0 +1,104 @@
+% Copyright (c) 2026 Uğur Mengilli
+%
+% This software is released under the MIT License.
+% https://opensource.org/licenses/MIT
+%
+% Sabanci University Beamer Theme (Based on Focus)
+%
+% Main controller for presentation structural logic.
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{beamerthemesabanci}[2026/03/21 Sabanci University Beamer Theme]
+
+% ==============================================
+% PACKAGE OPTIONS (OPT-IN FEATURES)
+% ==============================================
+% Define `[outline]` package option. Trigger in main.tex via
+% \usetheme[outline]{sabanci} to automatically print a "Table of
+% Contents" slide at the start of each new section.
+\newif\ifsabanci@outline
+\sabanci@outlinefalse
+\DeclareOptionBeamer{outline}{\sabanci@outlinetrue}
+\ProcessOptionsBeamer
+
+% ==============================================
+% LOAD BASE THEME
+% ==============================================
+% Build on top of the `focus` theme for modern layout structures.
+% Pass `[nofirafonts]` to allow custom font injection instead of
+% the default Fira fonts.
+\usetheme[nofirafonts]{focus}
+
+% ==============================================
+% TYPOGRAPHY & SYMBOL SETTINGS
+% ==============================================
+\RequirePackage{iftex}
+% Load OpenType font support only under XeTeX/LuaTeX and select
+% "Linux Biolinum O" as the global sans-serif font if available.
+\ifPDFTeX
+  % pdfLaTeX: fontspec and system OpenType fonts are not supported.
+  % Fall back to the document's default sans-serif font and warn.
+  \PackageWarning{beamerthemesabanci}{%
+    Custom OpenType font 'Linux Biolinum O' is not available under pdfLaTeX.%
+    \MessageBreak Using the default sans-serif font instead.}
+\else
+  \RequirePackage{fontspec}
+  \IfFontExistsTF{Linux Biolinum O}{%
+    \setsansfont{Linux Biolinum O}%
+  }{%
+    \PackageWarning{beamerthemesabanci}{%
+      Custom OpenType font 'Linux Biolinum O' is not installed.%
+      \MessageBreak Using the default sans-serif font instead.%
+      \MessageBreak Install 'Linux Biolinum O' or redefine the theme's%
+      \MessageBreak sans-serif font if you require the original look.%
+    }%
+  }
+\fi
+% Improve visual quality and readability of the text.
+\RequirePackage{microtype}
+% Force mathematical equations and numbers to use serif (standard
+% LaTeX math font) instead of sans-serif.
+\usefonttheme[onlymath]{serif}
+
+% ==============================================
+% STRUCTURAL BEHAVIORS & HOOKS
+% ==============================================
+% Convert footnotes from symbols (*, dagger) to Arabic numerals (1, 2).
+\renewcommand{\thempfootnote}{\arabic{mpfootnote}}
+
+% >>> OVERRIDING FOCUS SECTION BEHAVIORS
+% The `focus` theme uses Beamer's \AtBeginSection and \AtBeginSubsection
+% hooks to inject full-page title slides at each \section and \subsection.
+% Here we clear those hooks so that sections act purely as structural
+% markers (e.g., for PDF bookmarks) without forcing intermediate title frames.
+\AtBeginSubsection{}
+
+\ifsabanci@outline
+  % If `[outline]` flag is passed, generate a Table of Contents slide
+  % at every \section call.
+  \AtBeginSection[]
+  {
+    \begin{frame}<beamer>
+      \frametitle{Presentation Outline}
+      \tableofcontents[currentsection,hideothersubsections]
+    \end{frame}
+  }
+\else
+  % Silence the \section hook if `[outline]` flag is not passed.
+  \AtBeginSection{}
+\fi
+
+% ==============================================
+% BRANDING & AESTHETIC INJECTIONS
+% ==============================================
+% Separate color logic into `beamercolorthemesabanci.sty` for modularity.
+\usecolortheme{sabanci}
+
+% Ensure we can refer to the directory containing this theme file,
+% so images stored alongside it can be found regardless of the
+% compilation working directory.
+\RequirePackage{currfile}
+
+% Setup title graphic (logo on title page).
+% Use `\vspace*{26mm}` to align the Sabanci logo with the layout grid.
+\titlegraphic{\vspace*{26mm}\includegraphics[scale=0.5]{\currfiledir logo_sabanci_cmyk.png}}

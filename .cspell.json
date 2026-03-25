@@ -1,0 +1,33 @@
+{
+    "words": [
+        "beamer",
+        "Mengilli",
+        "Pantone",
+        "retarget",
+        "Sabanci",
+        "Uğur"
+    ],
+    "ignoreRegExpList": [
+        "/\\\\[a-z]+/gi",
+        "/@[a-z0-9_-]+/gi"
+    ],
+    "ignoreWords": [
+        "beamercolorthemesabanci",
+        "beamerthemesabanci",
+        "Biolinum",
+        "cmyk",
+        "currentsection",
+        "currfile",
+        "Fira",
+        "fontspec",
+        "footline",
+        "frametitle",
+        "hideothersubsections",
+        "iftex",
+        "microtype",
+        "mpfootnote",
+        "nofirafonts",
+        "onlymath",
+        "xcolor"
+    ]
+}
