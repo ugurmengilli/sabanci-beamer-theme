@@ -46,12 +46,12 @@
   \IfFontExistsTF{Linux Biolinum O}{%
     \setsansfont{Linux Biolinum O}%
   }{%
-    \PackageError{beamerthemesabanci}%
-      {Required font 'Linux Biolinum O' is not installed}%
-      {%
-        Install the 'Linux Biolinum O' system font or modify the theme to%
-        \MessageBreak use a different sans-serif font before continuing.%
-      }%
+    \PackageWarning{beamerthemesabanci}{%
+      Custom OpenType font 'Linux Biolinum O' is not installed.%
+      \MessageBreak Using the default sans-serif font instead.%
+      \MessageBreak Install 'Linux Biolinum O' or redefine the theme's%
+      \MessageBreak sans-serif font if you require the original look.%
+    }%
   }
 \fi
 % Improve visual quality and readability of the text.
